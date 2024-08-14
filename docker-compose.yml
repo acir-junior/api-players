@@ -1,0 +1,58 @@
+version: '2'
+services:
+    api-mysql:
+        container_name: api-mysql
+        restart: always
+        image: mysql:latest
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: apiplayers
+            MYSQL_USER: laravel
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+        volumes:
+            - mysql-data:/var/lib/mysql
+        networks:
+            - api
+        healthcheck:
+            test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+            timeout: 5s
+            retries: 5
+
+    api-php:
+        container_name: api-php
+        build:
+            context: .
+            dockerfile: Dockerfile
+        networks:
+            - api
+        volumes:
+            - '.:/var/www/html'
+        expose:
+            - 9000
+        depends_on:
+            api-mysql:
+                condition: service_healthy
+
+    api-server:
+        container_name: api-server
+        build:
+            context: .
+            dockerfile: nginx/Dockerfile
+        ports:
+            - "8080:80"
+        networks:
+            - api
+        volumes:
+            - '.:/var/www/html'
+            - ./nginx/default.conf:/etc/nginx/nginx.conf
+        depends_on:
+            - api-php
+volumes:
+    mysql-data:
+        driver: local
+
+networks:
+    api:
+        driver: bridge
