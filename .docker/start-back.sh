@@ -8,7 +8,13 @@ if [ ! -f ".env" ]; then
     cp .env.example .env
 fi
 
-php artisan migrate
+if [ "$APP_ENV" == "production" ]; then
+    echo "Executando as migrations em produção"
+    php artisan migrate --force
+else
+    echo "Executando as migrations local"
+    php artisan migrate
+fi
 
 php artisan route:cache &&
 php artisan config:cache &&
