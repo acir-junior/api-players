@@ -8,9 +8,11 @@ composer install
 
 chmod +x /var/www/html/artisan
 
+echo "AQUI1"
 if [ ! -f ".env" ]; then
     cp .env.example .env
 fi
+echo "AQUI2"
 
 php artisan migrate
 
