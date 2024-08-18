@@ -2,6 +2,8 @@
 
 set -e
 
+echo "ENTROU"
+
 composer install
 
 chmod +x /var/www/html/artisan
