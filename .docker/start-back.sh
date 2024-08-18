@@ -2,21 +2,15 @@
 
 set -e
 
-cd /var/www/html
-
-composer install
+COMPOSER_MEMORY_LIMIT=-1 composer install
 
 chmod +x /var/www/html/artisan
 
-echo "AQUI1"
 if [ ! -f ".env" ]; then
     cp .env.example .env
 fi
-echo "AQUI2"
 
 php artisan migrate
-
-echo "Executou as migrations"
 
 php artisan route:cache &&
 php artisan config:cache &&
