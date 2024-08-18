@@ -15,6 +15,8 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+RUN ln -s /usr/local/etc/php/php.ini-production /usr/local/etc/php/php.ini
+
 RUN rm -rf vendor && rm -rf composer.lock
 
 COPY . /var/www/html
