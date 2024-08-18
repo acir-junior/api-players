@@ -1,6 +1,8 @@
 #!/bin/bash
 
-set -ex
+set -e
+
+cd /var/www/html
 
 composer install
 
@@ -11,6 +13,8 @@ if [ ! -f ".env" ]; then
 fi
 
 php artisan migrate
+
+echo "Executou as migrations"
 
 php artisan route:cache &&
 php artisan config:cache &&
