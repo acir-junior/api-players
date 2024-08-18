@@ -17,4 +17,4 @@ php artisan config:cache &&
 php artisan optimize:clear &&
 php artisan cache:clear
 
-php-fpm8.2
+php-fpm

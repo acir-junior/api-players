@@ -28,6 +28,6 @@ RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
 RUN chmod +x /var/www/html/.docker/start-back.sh
 
-CMD [ "/var/www/html/.docker/start-back.sh" ]
+CMD ["/bin/bash", "/var/www/html/.docker/start-back.sh"]
 
 EXPOSE 9000
