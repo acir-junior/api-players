@@ -2,6 +2,8 @@
 
 set -e
 
+echo PORT $PORT
+
 chmod +x /var/www/html/artisan
 
 if [ ! -f ".env" ]; then
