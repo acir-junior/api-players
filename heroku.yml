@@ -1,5 +1,5 @@
 build:
   docker:
-    web: DockerfilePROD
+    web: Dockerfile
   run:
     - /bin/bash /var/www/html/.docker/start-back.sh
