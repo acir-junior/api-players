@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 
 composer install
 
@@ -17,4 +17,4 @@ php artisan config:cache &&
 php artisan optimize:clear &&
 php artisan cache:clear
 
-php-fpm
+php-fpm8.2
