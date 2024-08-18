@@ -21,8 +21,11 @@ COPY . /var/www/html
 
 WORKDIR /var/www/html
 
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+
 RUN chmod +x /var/www/html/.docker/start-back.sh
 
 CMD [ "/var/www/html/.docker/start-back.sh" ]
 
-EXPOSE 8080
+EXPOSE 9000
