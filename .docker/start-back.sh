@@ -10,7 +10,7 @@ fi
 
 if [ "$APP_ENV" == "production" ]; then
     echo "Executando as migrations em produção"
-    php artisan migrate --force
+    php artisan migrate --force --env=production
 else
     echo "Executando as migrations local"
     php artisan migrate
