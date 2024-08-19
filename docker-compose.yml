@@ -17,7 +17,7 @@ services:
             - api
         healthcheck:
             test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-            timeout: 5s
+            timeout: 10s
             retries: 5
 
     api-php:
