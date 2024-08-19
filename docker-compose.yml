@@ -30,7 +30,7 @@ services:
         volumes:
             - './:/var/www/html'
         expose:
-            - 5000
+            - 9000
         depends_on:
             api-mysql:
                 condition: service_healthy

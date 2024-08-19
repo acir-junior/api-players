@@ -32,4 +32,4 @@ RUN chmod +x /var/www/html/.docker/start-back.sh
 
 CMD ["/bin/bash", "/var/www/html/.docker/start-back.sh"]
 
-EXPOSE 80
+EXPOSE 9000
