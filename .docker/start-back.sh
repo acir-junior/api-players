@@ -2,6 +2,8 @@
 
 set -e
 
+sleep 10
+
 chmod +x /var/www/html/artisan
 
 if [ ! -f ".env" ]; then
