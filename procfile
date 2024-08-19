@@ -1,1 +1,1 @@
-web: docker-compose up --no-recreate
+web: /usr/sbin/nginx -c /etc/nginx/nginx.conf && php-fpm
