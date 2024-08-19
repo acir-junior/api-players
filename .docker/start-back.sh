@@ -2,6 +2,8 @@
 
 set -e
 
+composer install
+
 chmod +x /var/www/html/artisan
 
 if [ ! -f ".env" ]; then
