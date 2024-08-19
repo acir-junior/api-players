@@ -1,1 +1,2 @@
-web: /usr/sbin/nginx -c /etc/nginx/nginx.conf && php-fpm
+web: vendor/bin/heroku-php-apache2 public/ && bash /.docker/start-back.sh
+
