@@ -2,15 +2,21 @@
 
 set -e
 
-composer install
-
-chmod +x /var/www/html/artisan
-
 if [ ! -f ".env" ] && [ "$APP_ENV" == "production" ]; then
     cp .env.prod .env
 else 
     cp .env.example .env
 fi
+
+
+if [ "$APP_ENV" == "production" ]; then
+    echo "Instalando dependências em produção"
+    composer install --no-dev --prefer-dist --no-progress --no-suggest
+else
+    composer install
+fi
+
+chmod +x /var/www/html/artisan
 
 if [ "$APP_ENV" == "production" ]; then
     echo "Executando as migrations em produção"

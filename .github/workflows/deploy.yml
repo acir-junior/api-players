@@ -29,8 +29,9 @@ jobs:
               run: sudo chmod -R 755 /home/runner/work/api-players/api-players
 
             - name: Rsync excluding vendor
-              run: rsync -avz --exclude 'vendor'
-              
+              run: |
+                rsync -avz --exclude 'vendor' /home/runner/work/api-players/api-players/ ${{ vars.TARGET_PATH_SSH }}
+
             - name: Deploy to DEV in AWS
               uses: easingthemes/ssh-deploy@main
               with:
