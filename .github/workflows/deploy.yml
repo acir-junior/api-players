@@ -24,8 +24,6 @@ jobs:
         steps:
             - name: Repo Checkout
               uses: actions/checkout@v3  
-            - name: Adjust Permissions
-              run: chmod -R 755 /vendor /bootstrap/cache /storage
             - name: Deploy to DEV in AWS
               uses: easingthemes/ssh-deploy@main
               with:
