@@ -23,13 +23,15 @@ jobs:
         needs: build
         steps:
             - name: Repo Checkout
-              uses: actions/checkout@v3  
+              uses: actions/checkout@v3
+            - name: Check permissions before rsync
+              run: ls -l /home/runner/work/api-players/api-players
             - name: Deploy to DEV in AWS
               uses: easingthemes/ssh-deploy@main
               with:
                 SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
                 ARGS: "-rltgoDzvO --delete"
-                SOURCE: "./"
+                SOURCE: "/"
                 REMOTE_HOST: ${{ vars.REMOTE_HOST }}
                 REMOTE_USER: ${{ vars.REMOTE_USER }}
                 REMOTE_PORT: ${{ vars.REMOTE_PORT }}
