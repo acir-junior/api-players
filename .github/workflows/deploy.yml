@@ -39,13 +39,9 @@ jobs:
           REMOTE_PORT: ${{ vars.REMOTE_PORT }}
           TARGET: ${{ vars.TARGET_URL_CONTAINER }}
 
-      - name: "stop running Docker containers"
+      - name: "restart running Docker containers"
         run: |
-          docker compose down -v
-
-      - name: "Start Docker containers"
-        run: |
-          docker compose up -d --build
+          docker compose restart
 
   rollback:
     runs-on: ubuntu-latest

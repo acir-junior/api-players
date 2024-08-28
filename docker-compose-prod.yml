@@ -27,7 +27,7 @@ services:
             context: .
             dockerfile: Dockerfile
         environment:
-            - ENV=development
+            - ENV=production
         networks:
             - api
         expose:
