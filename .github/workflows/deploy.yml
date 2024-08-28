@@ -33,11 +33,11 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete --rsync-path='sudo rsync'"
-          SOURCE: ${{ vars.TARGET}}
+          SOURCE: ${{ vars.TARGET_PATH_SSH }}
           REMOTE_HOST: ${{ vars.REMOTE_HOST }}
           REMOTE_USER: ${{ vars.REMOTE_USER }}
           REMOTE_PORT: ${{ vars.REMOTE_PORT }}
-          TARGET: ${{ vars.TARGET }}
+          TARGET: ${{ vars.TARGET_PATH_SSH }}
 
       - name: "stop running Docker containers"
         run: |

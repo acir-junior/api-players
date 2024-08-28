@@ -28,7 +28,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Cadastrar Jogador</button>
         </form>
-
+        <p>HAHAHA</p>
         <div class="row col-md-12">
             <div class="g-4 row-cols-1 row-cols-md-2 row col-md-5">
                 <div class="col-md-12">
