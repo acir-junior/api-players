@@ -15,6 +15,13 @@ jobs:
       - name: Build
         run: echo "Building the application"
 
+  test-ssh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test SSH Connection
+        run: |
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SERVER_SSH_KEY }} -p 22 ec2-user@${{ vars.REMOTE_HOST }} 'echo "SSH Connection Successful"'
+
   deploy-dev:
     runs-on: ubuntu-latest
     environment:
