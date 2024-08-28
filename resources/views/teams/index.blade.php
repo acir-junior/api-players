@@ -30,8 +30,7 @@
         </form>
 
         <div class="row col-md-12">
-            
-            <div class="g-4 row-cols-1 row-cols-md-2 row col-md-6">
+            <div class="g-4 row-cols-1 row-cols-md-2 row col-md-5">
                 <div class="col-md-12">
                     <h1 class="text-center mb-5">Jogadores Confirmados</h1>
                 </div>
@@ -54,7 +53,7 @@
                 @endforeach
             </div>
             
-            <div class="g-4 row-cols-1 row-cols-md-2 row col-md-6" style="margin-bottom: 22.5vh;">
+            <div class="g-4 row-cols-1 row-cols-md-2 row col-md-7">
                 <div class="col-md-12">
                     <h1 class="text-center">Times Formados</h1>
                 </div>
