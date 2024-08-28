@@ -30,7 +30,7 @@ jobs:
 
       - name: "stop running Docker containers"
         run: |
-          ssh -i ${{ secrets.SERVER_SSH_KEY }} -p ${{ vars.REMOTE_PORT }} ${{ vars.REMOTE_USER }}@${{ vars.REMOTE_HOST }} << 'EOF' 
+          ssh -o StrictHostKeyChecking=no -i ${{ secrets.SERVER_SSH_KEY }} -p ${{ vars.REMOTE_PORT }} ${{ vars.REMOTE_USER }}@${{ vars.REMOTE_HOST }} << 'EOF' 
           docker-compose down
           EOF
 
