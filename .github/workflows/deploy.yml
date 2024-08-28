@@ -41,7 +41,8 @@ jobs:
 
       - name: "stop running Docker containers"
         run: |
-          docker compose -f '${{ vars.DOCKER_COMPOSE_FILE }}' down
+          docker compose down -f '${{ vars.DOCKER_COMPOSE_FILE }}' down
+          sleep 5
 
       - name: "Start Docker containers"
         run: |
