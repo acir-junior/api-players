@@ -28,13 +28,38 @@ jobs:
       - name: Adjust permissions for GitHub Actions workspace
         run: sudo chmod -R 755 /home/runner/work/api-players/api-players
 
+      - name: "stop running Docker containers"
+        run: |
+          ssh -i ${{ secrets.SERVER_SSH_KEY }} -p ${{ vars.REMOTE_PORT }} ${{ vars.REMOTE_USER }}@${{ vars.REMOTE_HOST }} << 'EOF' 
+          docker-compose down
+          EOF
+
       - name: Deploy to DEV in AWS
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          ARGS: "-rltgoDzvO --delete"
-          SOURCE: "/"
+          ARGS: "-rltgoDzvO --delete --rsync-path='sudo rsync'"
+          SOURCE: "/home/runner/work/api-players/api-players"
           REMOTE_HOST: ${{ vars.REMOTE_HOST }}
           REMOTE_USER: ${{ vars.REMOTE_USER }}
           REMOTE_PORT: ${{ vars.REMOTE_PORT }}
           TARGET: ${{ vars.TARGET }}
+
+      - name: "Start Docker containers"
+        run: |
+          ssh -i ${{ secrets.SERVER_SSH_KEY }} -p ${{ vars.REMOTE_PORT }} ${{ vars.REMOTE_USER }}@${{ vars.REMOTE_HOST }} << 'EOF' 
+          docker-compose up -d
+          EOF
+
+  rollback:
+    runs-on: ubuntu-latest
+    if: failure()
+    steps:
+      - name: Repo Checkout
+        uses: actions/checkout@v3
+        
+      - name: "Rollback to previous version"
+        run: |
+          ssh -i ${{ secrets.SERVER_SSH_KEY }} -p ${{ vars.REMOTE_PORT }} ${{ vars.REMOTE_USER }}@${{ vars.REMOTE_HOST }} << 'EOF' 
+          cd ${{ vars.TARGET_URL_CONTAINER }} && git checkout HEAD~1 && docker-compose up -d --build
+          EOF
