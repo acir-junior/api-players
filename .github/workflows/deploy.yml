@@ -29,7 +29,7 @@ jobs:
         run: echo "${{ secrets.SERVER_SSH_KEY }}" > key_server.pem
 
       - name: Adjust permissions for SSH Key
-        run: sudo chmod 600 private_key.pem
+        run: sudo chmod 600 key_server.pem
 
       - name: Adjust permissions for GitHub Actions workspace
         run: sudo chmod -R 755 /home/runner/work/api-players/api-players
