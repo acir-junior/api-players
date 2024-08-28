@@ -25,12 +25,6 @@ jobs:
       - name: Repo Checkout
         uses: actions/checkout@v3
 
-      # - name: Save SSH Key to file
-      #   run: echo "${{ secrets.SERVER_SSH_KEY }}" > key_server.pem
-
-      # - name: Adjust permissions for SSH Key
-      #   run: sudo chmod 600 key_server.pem
-
       - name: Adjust permissions for GitHub Actions workspace
         run: sudo chmod -R 755 /home/runner/work/api-players/api-players
 
@@ -39,7 +33,7 @@ jobs:
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-rltgoDzvO --delete --rsync-path='sudo rsync'"
-          SOURCE: "/home/runner/work/api-players/api-players"
+          SOURCE: ${{ vars.TARGET}}
           REMOTE_HOST: ${{ vars.REMOTE_HOST }}
           REMOTE_USER: ${{ vars.REMOTE_USER }}
           REMOTE_PORT: ${{ vars.REMOTE_PORT }}
