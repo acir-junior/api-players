@@ -41,11 +41,11 @@ jobs:
 
       - name: "stop running Docker containers"
         run: |
-          docker-compose down
+          docker compose down -v
 
       - name: "Start Docker containers"
         run: |
-          docker-compose up -d
+          docker compose up -d --build
 
   rollback:
     runs-on: ubuntu-latest
