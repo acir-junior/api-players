@@ -66,8 +66,7 @@ COPY resources/ /var/www/html/resources
 COPY routes/ /var/www/html/routes
 COPY storage/ /var/www/html/storage
 COPY .docker/ /var/www/html/.docker
-COPY nginx/ /var/www/html/nginx
-COPY .env.dev /var/www/html
+COPY .env.example /var/www/html
 COPY .env.prod /var/www/html
 
 COPY --from=build /app-build/public/build /var/www/html/public/build
